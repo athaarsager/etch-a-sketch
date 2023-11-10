@@ -1,9 +1,14 @@
+:root {
+    --gridLength: 1000px;
+}
+
 #gridContainer {
     width: 1000px;
     height: 1000px;
     display: flex;
 }
 
-.square {
-    --gridLength: 1000px;
+.row {
+    display: flex;
+    border: 2px solid black;/*border syntax: width, style, color*/
 }
