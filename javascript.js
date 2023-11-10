@@ -1,10 +1,19 @@
 let gridSize = 16;
-function makeGrid(gridSize) {
-for(i = 0; i < gridSize; i++) {
-    const square = document.createElement("div");
-    square.style.height = "gridContainer.height/gridSize";
-    square.style.width = "gridContainer.width/gridSize";
-    square.style.cssText = "border-style: solid; border-width: 2px; border-colr: black;";
-    gridContainer.appendChild(square);
+
+const gridContainer = document.querySelector("#gridContainer");
+
+
+function makeGrid() {
+    for(i = 0; i < gridSize; i++) {
+        const square = document.createElement("div");
+        square.classList.add("square");
+        square.style.height = `calc(var(--gridLength) / ${gridSize})`;
+        square.style.width = `calc(var(--gridLength) / ${gridSize})`; //references CSS variable, then concatenate js variable
+        square.style.borderStyle = "solid";
+        square.style.borderColor = "black";
+        square.style.borderWidth = "2px";
+        gridContainer.appendChild(square);
+    }
 }
-}
+
+makeGrid(); 

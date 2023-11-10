@@ -3,3 +3,7 @@
     height: 1000px;
     display: flex;
 }
+
+.square {
+    --gridLength: 1000px;
+}
