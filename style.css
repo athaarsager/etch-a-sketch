@@ -1,14 +1,20 @@
 :root {
-    --gridLength: 1000px;
+    --gridLength: 800px;
 }
 
 #gridContainer {
-    width: 1000px;
-    height: 1000px;
+    width: 800px;
+    height: 800px;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
     display: flex;
+    flex-direction: column;
+    margin: 0;
 }
 
 .row {
     display: flex;
-    border: 2px solid black;/*border syntax: width, style, color*/
+    border-bottom: 2px solid black;/*border syntax: width, style, color*/
+    max-width: 1000px;
+    max-height: 1000px;
 }
