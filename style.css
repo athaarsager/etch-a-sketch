@@ -1,20 +1,35 @@
 :root {
-    --gridLength: 800px;
+    --gridLength: 850px;
+}
+body {
+    display: flex;
+    justify-content: space-between;
+}
+
+#buttonContainer {
+    height: auto;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+
 }
 
 #container {
     display: flex;
     justify-content: center;
+    margin-top: 50px;
+    margin-right: 450px;
 }
 
 #gridContainer {
-    width: 800px;
-    height: 800px;
+    width: 850px;
+    height: 850px;
     border-top: 2px solid black;
     border-left: 2px solid black;
     display: flex;
     flex-direction: column;
-    margin: 0;
 }
 
 .row {
