@@ -10,6 +10,8 @@ gridButton.addEventListener("click", setGrid);
 const clearButton = document.querySelector("#clearButton");
 clearButton.addEventListener("click", clearGrid);
 
+const rainbowButton = document.querySelector("#rainbowButton");
+
 function makeRow() {
     
     const row = document.createElement("div");
