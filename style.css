@@ -10,10 +10,22 @@ body {
     height: auto;
     width: 300px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-left: 50px;
 
+}
+
+#gridButton {
+    height: auto;
+    width: 95px;
+    margin-bottom: 20px;
+}
+
+#clearButton {
+    height: auto;
+    width: 95px;
 }
 
 #container {
