@@ -26,17 +26,17 @@ body {
 #gridContainer {
     width: 850px;
     height: 850px;
-    border-top: 2px solid black;
-    border-left: 2px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
     display: flex;
     flex-direction: column;
 }
 
 .row {
     display: flex;
-    border-bottom: 2px solid black;/*border syntax: width, style, color*/
-    max-width: 1000px;
-    max-height: 1000px;
+    border-bottom: 1px solid black;/*border syntax: width, style, color*/
+    max-width: 850px;
+    max-height: 850px;
 }
 
 
