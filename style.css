@@ -2,6 +2,11 @@
     --gridLength: 800px;
 }
 
+#container {
+    display: flex;
+    justify-content: center;
+}
+
 #gridContainer {
     width: 800px;
     height: 800px;
