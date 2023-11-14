@@ -46,10 +46,12 @@ function removeGrid() {
 
 function setGrid() {
     newGridSize = prompt("Please enter your preferred grid size!");
-    if(newGridSize < 1) {
-        prompt("Invalid number. Grid size must be at least 1.")
-    } else if(newGridSize > 100) {
-        prompt("Invalid number. Grid size must be 100 or less.")
+    while (newGridSize < 1 || newGridSize > 100) {
+        if (newGridSize < 1) {
+            newGridSize = prompt("Invalid number. Grid size must be at least 1.")
+        } else if(newGridSize > 100) {
+            newGridSize = prompt("Invalid number. Grid size must be 100 or less.")
+        }
     }
     removeGrid();
     gridSize = newGridSize;
