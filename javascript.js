@@ -1,5 +1,6 @@
 let gridSize = 16;
 let newGridSize;
+let rainbowButtonClicked = false;
 
 const gridContainer = document.querySelector("#gridContainer");
 const container = document.querySelector("#container");
@@ -10,7 +11,7 @@ gridButton.addEventListener("click", setGrid);
 const clearButton = document.querySelector("#clearButton");
 clearButton.addEventListener("click", clearGrid);
 
-const rainbowButton = document.querySelector("#rainbowButton");
+const rainbowButton = document.querySelector("#rainbowButton");//created generator, figure out how to apply it
 
 function makeRow() {
     
@@ -63,6 +64,15 @@ function setGrid() {
 function clearGrid() {
     removeGrid();
     makeGrid();
+}
+
+function makeRandomColor() {
+    let maxValue = 0xFFFFFF;
+    let randomNumber = Math.random() * maxValue;
+    randomNumber = Math.floor(randomNumber);
+    randomNumber = randomNumber.toString(16);
+    let randomColor = randomNumber.padStart(6, 0);
+    return `${randomColor.toUpperCase()}`;
 }
 
 makeGrid(); 
