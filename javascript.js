@@ -1,9 +1,14 @@
 let gridSize = 16;
 let newGridSize;
 
-
-let gridContainer = document.querySelector("#gridContainer");
+const gridContainer = document.querySelector("#gridContainer");
 const container = document.querySelector("#container");
+
+const gridButton = document.querySelector("#gridButton");
+gridButton.addEventListener("click", setGrid);
+
+const clearButton = document.querySelector("#clearButton");
+clearButton.addEventListener("click", clearGrid);
 
 function makeRow() {
     
@@ -51,8 +56,12 @@ function setGrid() {
     makeGrid();
 }
 
+function clearGrid() {
+    removeGrid();
+    makeGrid();
+}
+
 makeGrid(); 
 
-const gridButton = document.querySelector("#gridButton");
 
-gridButton.addEventListener("click", setGrid);
+
