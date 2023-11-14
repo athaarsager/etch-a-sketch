@@ -14,6 +14,11 @@ function makeRow() {
         square.style.width = `calc(var(--gridLength) / ${gridSize})`; //references CSS variable, then concatenate js variable
         square.style.borderRight = "2px solid black";
         row.appendChild(square);//all appended to same row
+
+        square.addEventListener("mouseover", () => {
+            square.style.backgroundColor = "black";
+            console.log("You hovered over a square!");
+        });
     }
     gridContainer.appendChild(row);
 }
@@ -25,8 +30,3 @@ function makeGrid() {
 }
 
 makeGrid(); 
-
-const square = document.querySelector(".square");
-square.addEventListener("mouseover", () => {
-    square.style.backgroundColor = "black";
-});
