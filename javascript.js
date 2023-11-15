@@ -1,6 +1,7 @@
 let gridSize = 16;
 let newGridSize;
-let rainbowButtonClicked = false;
+let rainbowMode = false;
+
 
 const gridContainer = document.querySelector("#gridContainer");
 const container = document.querySelector("#container");
@@ -11,7 +12,21 @@ gridButton.addEventListener("click", setGrid);
 const clearButton = document.querySelector("#clearButton");
 clearButton.addEventListener("click", clearGrid);
 
-const rainbowButton = document.querySelector("#rainbowButton");//created generator, figure out how to apply it
+const rainbowButton = document.querySelector("#rainbowButton");
+rainbowButton.addEventListener("click", activateRainbowMode);
+
+function activateRainbowMode() {
+    if(rainbowMode === false) {
+        rainbowMode = true;
+    } else {
+        rainbowMode = false;
+    }
+    console.log("I was clicked!")
+}
+
+function setSquareColor() {
+    root.style.setProperty(`--squareColor`,`${newColor}` );
+}
 
 function makeRow() {
     
@@ -26,7 +41,11 @@ function makeRow() {
         square.style.borderRight = "1px solid black";
 
         square.addEventListener("mouseover", () => {
-            square.style.backgroundColor = "black";
+            if(rainbowMode) {
+                square.style.backgroundColor = `${makeRandomColor()}`;
+            } else {
+                square.style.backgroundColor = "black";
+            }
         });
         row.appendChild(square);
     }
@@ -72,7 +91,7 @@ function makeRandomColor() {
     randomNumber = Math.floor(randomNumber);
     randomNumber = randomNumber.toString(16);
     let randomColor = randomNumber.padStart(6, 0);
-    return `${randomColor.toUpperCase()}`;
+    return `#${randomColor.toUpperCase()}`;
 }
 
 makeGrid(); 
