@@ -90,8 +90,32 @@ function makeRandomColor() {
     let randomNumber = Math.random() * maxValue;
     randomNumber = Math.floor(randomNumber);
     randomNumber = randomNumber.toString(16);
-    let randomColor = randomNumber.padStart(6, 0);
+    let randomColor = randomNumber.padStart(6, "0");//padStart pads a string with the right argument until it reaches the length of the left argument
     return `#${randomColor.toUpperCase()}`;
+}
+
+function shadeColor(color, percent) {
+    let r = parseInt(color.substring(1, 3), 16);
+    let g = parseInt(color.substring(3, 5), 16);
+    let b = parseInt(color.substring(5, 7), 16);
+
+    r = parseInt(r * (100 + percent) / 100);
+    g = parseInt(g * (100 + percent) / 100);
+    b = parseInt(b * (100 + percent) / 100);
+
+    r = (r<255) ? r: 255;
+    g = (g<255) ? g: 255;
+    b = (b<255) ? b: 255; 
+
+    r = Math.round(r);
+    g = Math.round(g);
+    b = Math.round(b);
+
+    let rr = r.toString(16).padStart(2, "0");
+    let gg = g.toString(16).padStart(2, "0");
+    let bb = b.toString(16).padStart(2, "0");
+    
+    return `#${rr}${gg}${bb}`;
 }
 
 makeGrid(); 
