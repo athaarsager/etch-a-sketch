@@ -24,10 +24,6 @@ function activateRainbowMode() {
     console.log("I was clicked!")
 }
 
-function setSquareColor() {
-    root.style.setProperty(`--squareColor`,`${newColor}` );
-}
-
 function makeRow() {
     
     const row = document.createElement("div");
@@ -68,13 +64,17 @@ function removeGrid() {
 
 function setGrid() {
     newGridSize = prompt("Please enter your preferred grid size!");
-    while (newGridSize < 1 || newGridSize > 100) {
-        if (newGridSize < 1) {
+    while (newGridSize === null || newGridSize < 1 || newGridSize > 100) {
+        if (newGridSize === null) {
+            return;
+        }
+        else if (newGridSize < 1) {
             newGridSize = prompt("Invalid number. Grid size must be at least 1.")
         } else if(newGridSize > 100) {
             newGridSize = prompt("Invalid number. Grid size must be 100 or less.")
         }
     }
+    
     removeGrid();
     gridSize = newGridSize;
     makeGrid();
