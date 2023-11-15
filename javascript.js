@@ -1,6 +1,7 @@
 let gridSize = 16;
 let newGridSize;
 let rainbowMode = false;
+let shadingMode = false;
 
 
 const gridContainer = document.querySelector("#gridContainer");
@@ -15,14 +16,8 @@ clearButton.addEventListener("click", clearGrid);
 const rainbowButton = document.querySelector("#rainbowButton");
 rainbowButton.addEventListener("click", activateRainbowMode);
 
-function activateRainbowMode() {
-    if(rainbowMode === false) {
-        rainbowMode = true;
-    } else {
-        rainbowMode = false;
-    }
-    console.log("I was clicked!")
-}
+const shadeButton = document.querySelector("#shadeButton");
+shadeButton.addEventListener("click", setShadingMode);
 
 function makeRow() {
     
@@ -85,6 +80,14 @@ function clearGrid() {
     makeGrid();
 }
 
+function activateRainbowMode() {
+    if(rainbowMode === false) {
+        rainbowMode = true;
+    } else {
+        rainbowMode = false;
+    }
+}
+
 function makeRandomColor() {
     let maxValue = 0xFFFFFF;
     let randomNumber = Math.random() * maxValue;
@@ -92,6 +95,11 @@ function makeRandomColor() {
     randomNumber = randomNumber.toString(16);
     let randomColor = randomNumber.padStart(6, "0");//padStart pads a string with the right argument until it reaches the length of the left argument
     return `#${randomColor.toUpperCase()}`;
+}
+
+function setShadingMode() {
+    console.log("button was clicked!");
+    shadingMode ? shadingMode = false : shadingMode = true;
 }
 
 function shadeColor(color, percent) {
