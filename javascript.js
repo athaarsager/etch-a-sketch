@@ -2,6 +2,7 @@ let gridSize = 16;
 let newGridSize;
 let rainbowMode = false;
 let shadingMode = false;
+let shadePercent = 50;
 
 
 const gridContainer = document.querySelector("#gridContainer");
@@ -32,8 +33,15 @@ function makeRow() {
         square.style.borderRight = "1px solid black";
 
         square.addEventListener("mouseover", () => {
-            if(rainbowMode) {
+            if(rainbowMode && shadingMode) {
+                let squareColor = makeRandomColor();
+                square.style.backgroundColor = `${shadeColor(squareColor, shadePercent)}`;//need to set lighter hue first
+                shadePercent += 10;
+            } else if(rainbowMode) {
                 square.style.backgroundColor = `${makeRandomColor()}`;
+            } else if(shadingMode) {
+                square.style.backgroundColor = `${shadeColor("#000000", shadePercent)}`;//need to set lighter hue first
+                shadePercent += 10;
             } else {
                 square.style.backgroundColor = "black";
             }
@@ -83,8 +91,12 @@ function clearGrid() {
 function activateRainbowMode() {
     if(rainbowMode === false) {
         rainbowMode = true;
+        rainbowButton.style.border = "5px solid black";
+        rainbowButton.style.borderRadius = "2px";
     } else {
         rainbowMode = false;
+        rainbowButton.style.border = "1px solid black";
+        rainbowButton.style.borderRaidus = "2px";
     }
 }
 
@@ -98,8 +110,15 @@ function makeRandomColor() {
 }
 
 function setShadingMode() {
-    console.log("button was clicked!");
-    shadingMode ? shadingMode = false : shadingMode = true;
+    if(shadingMode === false) {
+        shadingMode = true;
+        shadeButton.style.border = "5px solid black";
+        shadeButton.style.borderRadius = "2px";
+    } else {
+        shadingMode = false;
+        shadeButton.style.border = "1px solid black";
+        shadeButton.style.borderRadius = "2px";
+    }
 }
 
 function shadeColor(color, percent) {
@@ -124,7 +143,7 @@ function shadeColor(color, percent) {
     let bb = b.toString(16).padStart(2, "0");
     
     return `#${rr}${gg}${bb}`;
-}
+}//double check if this works with solid colors?
 
 makeGrid(); 
 
