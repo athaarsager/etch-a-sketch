@@ -32,18 +32,18 @@ function makeRow() {
         square.style.width = `calc(var(--gridLength) / ${gridSize})`; //references CSS variable, then concatenate js variable
         square.style.borderRight = "1px solid black";
         square.style.backgroundColor = "#FFFFFF"
-        let squareColor = square.style.backgroundColor;
+        
 
         square.addEventListener("mouseover", () => {
             if(rainbowMode && shadingMode) {
-                //square.style.backgroundColor = `${shadeColor(makeRandomColor(), 100)}`;//defaults to lighter hues, though sometimes white
-                if(square.style.backgroundColor === "rgb(255, 255, 255)") {
-                    square.style.backgroundColor = shadeColor(makeRandomColor(), -10);
-                    console.log(squareColor);
+                //may need to adjust other ifs as backgroundcolor value will update each time
+               if(square.style.backgroundColor === "rgb(255, 255, 255)") {//would "this" keyword work?
+                    square.style.backgroundColor = makeRandomColor();
                 } else if(square.style.backgroundColor != "rgb(255, 255, 255)") {
-                    square.style.backgroundColor = shadeColor(square.style.backgroundColor, -100);
-                    console.log(squareColor);
-                }
+                    square.style.backgroundColor = `${shadeColor(toHex(square.style.backgroundColor), -10)}`;
+                    console.log("I've been shaded!")
+                } //something definitely wrong with color shade function too...
+                
                 /*if(square.style.backgroundColor === "rgb(255, 255, 255)") {
                     square.style.backgroundColor = `${shadeColor(makeRandomColor(), 100)}`;
                     squareColor = square.style.backgroundColor;
