@@ -36,7 +36,28 @@ function makeRow() {
 
         square.addEventListener("mouseover", () => {
             if(rainbowMode && shadingMode) {
-                
+                //square.style.backgroundColor = `${shadeColor(makeRandomColor(), 100)}`;//defaults to lighter hues, though sometimes white
+                if(square.style.backgroundColor === "rgb(255, 255, 255)") {
+                    square.style.backgroundColor = shadeColor(makeRandomColor(), -10);
+                    console.log(squareColor);
+                } else if(square.style.backgroundColor != "rgb(255, 255, 255)") {
+                    square.style.backgroundColor = shadeColor(square.style.backgroundColor, -100);
+                    console.log(squareColor);
+                }
+                /*if(square.style.backgroundColor === "rgb(255, 255, 255)") {
+                    square.style.backgroundColor = `${shadeColor(makeRandomColor(), 100)}`;
+                    squareColor = square.style.backgroundColor;
+                } else if(square.style.backgroundColor === `${toRGB(shadeColor(squareColor, 100))}`) {
+                    square.style.backgroundColor = `${shadeColor(squareColor, 80)}`;
+                    squareColor = square.style.backgroundColor;
+                } else if(square.style.backgroundColor === `${toRGB(shadeColor(squareColor, 80))}`) {
+                    square.style.backgroundColor = `${shadeColor(squareColor, 60)}`;
+                    squareColor = square.style.backgroundColor;
+                } 
+                else {
+                    square.style.backgroundColor = "black";
+                } */
+
             } else if(rainbowMode) {
                 square.style.backgroundColor = `${makeRandomColor()}`;
             } else if(shadingMode) {
@@ -187,6 +208,17 @@ function toRGB(hex) {
     return `rgb(${r}, ${g}, ${b})`
 }
 
+function toHex(rgb) {
+    let r = parseInt(rgb.slice(4, 8));
+    let g = parseInt(rgb.slice(9, 13));
+    let b = parseInt(rgb.slice(14, 17));
+    
+    r = r.toString(16).padStart(2, "0");
+    g = g.toString(16).padStart(2, "0");
+    b = b.toString(16).padStart(2, "0");
+
+    return`#${r}${g}${b}`;
+}
 
 makeGrid(); 
 
