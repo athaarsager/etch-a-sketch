@@ -40,39 +40,39 @@ function makeRow() {
             } else if(rainbowMode) {
                 square.style.backgroundColor = `${makeRandomColor()}`;
             } else if(shadingMode) {
-                    if(square.style.backgroundColor === "rgb(255, 255, 255)") {
-                        square.style.backgroundColor = `${shadeColor("#FFFFFF", -10)}`;
+                if(square.style.backgroundColor === "rgb(255, 255, 255)") {
+                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -10)}`;
 
-                    } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -10))}`) {
-                        square.style.backgroundColor = `${shadeColor("#FFFFFF", -20)}`;
+                } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -10))}`) {
+                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -20)}`;
                     
-                    } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -20))}`) {
-                        square.style.backgroundColor = `${shadeColor("#FFFFFF", -30)}`;
+                } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -20))}`) {
+                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -30)}`;
 
-                    } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -30))}`) {
-                        square.style.backgroundColor = `${shadeColor("#FFFFFF", -40)}`;
+                } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -30))}`) {
+                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -40)}`;
 
-                    } else if(square.style.backgroundColor ===`${toRGB(shadeColor("#FFFFFF", -40))}`) {
-                        square.style.backgroundColor = `${shadeColor("#FFFFFF", -50)}`;
+                } else if(square.style.backgroundColor ===`${toRGB(shadeColor("#FFFFFF", -40))}`) {
+                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -50)}`;
 
-                    } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -50))}`) {
-                        square.style.backgroundColor = `${shadeColor("#FFFFFF", -60)}`;
+                } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -50))}`) {
+                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -60)}`;
 
-                    } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -60))}`) {
-                        square.style.backgroundColor = `${shadeColor("#FFFFFF", -70)}`;
+                } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -60))}`) {
+                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -70)}`;
 
-                    } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -70))}`) {
-                        square.style.backgroundColor = `${shadeColor("#FFFFFF", -80)}`;
+                } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -70))}`) {
+                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -80)}`;
 
-                    } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -80))}`) {
-                        square.style.backgroundColor = `${shadeColor("#FFFFFF", -90)}`;
+                } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -80))}`) {
+                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -90)}`;
 
-                    } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -90))}`) {
-                        square.style.backgroundColor = `${shadeColor("#FFFFFF", -100)}`
-                    }
-                    else {
-                        square.style.backgroundColor = "black";
-                    } 
+                } else if(square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -90))}`) {
+                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -100)}`
+                }
+                else {
+                    square.style.backgroundColor = "black";
+                } 
                          
             } else {
                 square.style.backgroundColor = "black";
