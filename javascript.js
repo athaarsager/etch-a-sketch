@@ -36,13 +36,30 @@ function makeRow() {
 
         square.addEventListener("mouseover", () => {
             if(rainbowMode && shadingMode) {
+                let squareColor;
+                let squareColored;
                 //may need to adjust other ifs as backgroundcolor value will update each time
-               if(square.style.backgroundColor === "rgb(255, 255, 255)") {//would "this" keyword work?
-                    square.style.backgroundColor = makeRandomColor();
-                } else if(square.style.backgroundColor != "rgb(255, 255, 255)") {
-                    square.style.backgroundColor = `${shadeColor(toHex(square.style.backgroundColor), -10)}`;
-                    console.log("I've been shaded!")
-                } //something definitely wrong with color shade function too...
+                //program needs to recognize when square has been colored once, then retain that value
+                //and compare all shadings to that initial value
+                if(square.style.backgroundColor === "rgb(255, 255, 255)") {
+                    square.style.backgroundColor = `${shadeColor(makeRandomColor(), 10)}`;
+                    squareColor = square.style.backgroundColor;
+                    squareColored = true;
+                    console.log(squareColor);
+                    
+                } else {
+                    if(square.style.backgroundColor === `${toRGB(shadeColor(squareColor, 10))}`) {
+                        squareColor = `${shadeColor(squareColor, -1)}`;
+                        square.style.backgroundColor = squareColor;
+                    } else if(square.style.backgroundColor === `${toRGB(shadeColor(squareColor, -1))}`) {
+                        squareColor = `${shadeColor(squareColor, -12)}`;
+                        square.style.backgroundColor = squareColor;
+                    }
+                }
+
+                    /*square.style.backgroundColor = `${shadeColor(toHex(square.style.backgroundColor), -10)}`;
+                    console.log("I've been shaded!");*/
+                //something definitely wrong with color shade function too...
                 
                 /*if(square.style.backgroundColor === "rgb(255, 255, 255)") {
                     square.style.backgroundColor = `${shadeColor(makeRandomColor(), 100)}`;
@@ -161,6 +178,13 @@ function makeRandomColor() {
     randomNumber = Math.floor(randomNumber);
     randomNumber = randomNumber.toString(16);
     let randomColor = randomNumber.padStart(6, "0");//padStart pads a string with the right argument until it reaches the length of the left argument
+    while(randomColor === "000000" || randomColor === "ffffff") {//theoretically filters out white and black
+        randomNumber = Math.random() * maxValue;
+        randomNumber = Math.floor(randomNumber);
+        randomNumber = randomNumber.toString(16);
+        randomColor = randomNumber.padStart(6, "0");
+        return randomColor;
+    }
     return `#${randomColor.toUpperCase()}`;
 }
 
