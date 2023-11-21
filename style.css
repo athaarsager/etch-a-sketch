@@ -1,17 +1,18 @@
 :root {
     --gridLength: 850px;
 }
+
 body {
     display: flex;
     justify-content: space-between;
-    background-color:aliceblue;
+    background-color: aliceblue;
 }
 
 #leftContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
 }
 
 h1 {
@@ -70,9 +71,8 @@ h1 {
 
 .row {
     display: flex;
-    border-bottom: 1px solid black;/*border syntax: width, style, color*/
+    border-bottom: 1px solid black;
+    /*border syntax: width, style, color*/
     max-width: 850px;
     max-height: 850px;
 }
-
-

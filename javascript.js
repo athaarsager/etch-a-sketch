@@ -1,8 +1,6 @@
 let gridSize = 16;
-let newGridSize;
 let rainbowMode = false;
 let shadingMode = false;
-
 
 const gridContainer = document.querySelector("#gridContainer");
 const container = document.querySelector("#container");
@@ -25,7 +23,6 @@ function makeRow() {
     row.classList.add("row");
     row.style.height = `calc(var(--gridLength) / ${gridSize})`;
 
-
     for (i = 0; i < gridSize; i++) {
         const square = document.createElement("div");
         square.classList.add("square");
@@ -33,55 +30,18 @@ function makeRow() {
         square.style.borderRight = "1px solid black";
         square.style.backgroundColor = "#FFFFFF";
 
-
         square.addEventListener("mouseover", () => {
             if (rainbowMode && shadingMode) {
-                let squareColored;
                 if (square.style.backgroundColor === "rgb(255, 255, 255)") {
                     square.style.backgroundColor = makeRandomHue();
                     console.log(square.style.backgroundColor);
-                    squareColored = true;
                 } else {
                     square.style.backgroundColor = darkenHue(toHSL(splitRGB(square.style.backgroundColor)), 10);
                 }
-
             } else if (rainbowMode) {
                 square.style.backgroundColor = `${makeRandomColor()}`;
             } else if (shadingMode) {
-                if (square.style.backgroundColor === "rgb(255, 255, 255)") {
-                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -10)}`;
-
-                } else if (square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -10))}`) {
-                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -20)}`;
-
-                } else if (square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -20))}`) {
-                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -30)}`;
-
-                } else if (square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -30))}`) {
-                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -40)}`;
-
-                } else if (square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -40))}`) {
-                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -50)}`;
-
-                } else if (square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -50))}`) {
-                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -60)}`;
-
-                } else if (square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -60))}`) {
-                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -70)}`;
-
-                } else if (square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -70))}`) {
-                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -80)}`;
-
-                } else if (square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -80))}`) {
-                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -90)}`;
-
-                } else if (square.style.backgroundColor === `${toRGB(shadeColor("#FFFFFF", -90))}`) {
-                    square.style.backgroundColor = `${shadeColor("#FFFFFF", -100)}`
-                }
-                else {
-                    square.style.backgroundColor = "black";
-                }
-
+                square.style.backgroundColor = darkenHue(toHSL(splitRGB(square.style.backgroundColor)), 10);
             } else {
                 square.style.backgroundColor = "black";
             }
@@ -92,7 +52,6 @@ function makeRow() {
     gridContainer.appendChild(row);
 
 }
-
 
 function makeGrid() {
     for (x = 0; x < gridSize; x++) {//change i to x since makeRow already uses and increments i
@@ -107,7 +66,7 @@ function removeGrid() {
 }
 
 function setGrid() {
-    newGridSize = prompt("Please enter your preferred grid size!");
+    let newGridSize = prompt("Please enter your preferred grid size!");
     while (newGridSize === null || newGridSize < 1 || newGridSize > 100) {
         if (newGridSize === null) {
             return;
@@ -242,31 +201,6 @@ function toHSL(input) {
         100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
         (100 * (2 * l - s)) / 2,
     ];
-};
-
-function toRGB(hex) {
-    let r = parseInt(hex.slice(1, 3), 16);
-    let g = parseInt(hex.slice(3, 5), 16);
-    let b = parseInt(hex.slice(5, 7), 16);
-
-    r = r.toString().padStart(3, "0");
-    g = g.toString().padStart(3, "0");
-    b = b.toString().padStart(3, "0");
-
-
-    return `rgb(${r}, ${g}, ${b})`;
-}
-
-function toHex(rgb) {
-    let r = parseInt(rgb.slice(4, 8));
-    let g = parseInt(rgb.slice(9, 13));
-    let b = parseInt(rgb.slice(14, 17));
-
-    r = r.toString(16).padStart(2, "0");
-    g = g.toString(16).padStart(2, "0");
-    b = b.toString(16).padStart(2, "0");
-
-    return `#${r}${g}${b}`;
 }
 
 makeGrid();
