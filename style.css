@@ -30,27 +30,10 @@ h1 {
 
 }
 
-#gridButton {
+button {
     height: 50px;
     width: 175px;
     margin-bottom: 20px;
-}
-
-#clearButton {
-    height: 50px;
-    width: 175px;
-    margin-bottom: 20px;
-}
-
-#rainbowButton {
-    height: 50px;
-    margin-bottom: 20px;
-    width: 175px;
-}
-
-#shadeButton {
-    height: 50px;
-    width: 175px;
 }
 
 #container {
