@@ -31,30 +31,22 @@ function makeRow() {
         square.classList.add("square");
         square.style.width = `calc(var(--gridLength) / ${gridSize})`; //references CSS variable, then concatenate js variable
         square.style.borderRight = "1px solid black";
-        square.style.backgroundColor = "#FFFFFF"
+        square.style.backgroundColor = "#FFFFFF";
         
 
         square.addEventListener("mouseover", () => {
             if(rainbowMode && shadingMode) {
-                let squareColor;
                 let squareColored;
                 //may need to adjust other ifs as backgroundcolor value will update each time
                 //program needs to recognize when square has been colored once, then retain that value
                 //and compare all shadings to that initial value
                 if(square.style.backgroundColor === "rgb(255, 255, 255)") {
-                    square.style.backgroundColor = `${shadeColor(makeRandomColor(), 10)}`;
-                    squareColor = square.style.backgroundColor;
+                    square.style.backgroundColor = makeRandomHue();
+                    console.log(square.style.backgroundColor);
                     squareColored = true;
-                    console.log(squareColor);
-                    
                 } else {
-                    if(square.style.backgroundColor === `${toRGB(shadeColor(squareColor, 10))}`) {
-                        squareColor = `${shadeColor(squareColor, -1)}`;
-                        square.style.backgroundColor = squareColor;
-                    } else if(square.style.backgroundColor === `${toRGB(shadeColor(squareColor, -1))}`) {
-                        squareColor = `${shadeColor(squareColor, -12)}`;
-                        square.style.backgroundColor = squareColor;
-                    }
+                    square.style.backgroundColor = darkenHue(toHSL(splitRGB(square.style.backgroundColor)), 10);
+                    console.log(square.style.backgroundColor);
                 }
 
                     /*square.style.backgroundColor = `${shadeColor(toHex(square.style.backgroundColor), -10)}`;
@@ -188,6 +180,22 @@ function makeRandomColor() {
     return `#${randomColor.toUpperCase()}`;
 }
 
+function makeRandomHue() {
+    let minSat = 35;
+    let hue = Math.random() * 360;
+    let sat = Math.random() * 65 + 35;
+    let light = 90;
+
+    return `hsl(${hue}, ${sat}%, ${light}%)`;
+}
+
+function darkenHue(color, percent) {
+    
+    color[2] = color[2] - percent;
+
+    return `hsl(${color[0]}, ${color[1]}%, ${color[2]}%)`;
+}
+
 function setShadingMode() {
     if(shadingMode === false) {
         shadingMode = true;
@@ -224,12 +232,55 @@ function shadeColor(color, percent) {
     return `#${rr}${gg}${bb}`;
 }
 
-function toRGB(hex) {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
+function splitRGB(input) {
+    let rgb = input.split(", ");
+    //console.log(rgb);
+    let r = parseInt(rgb[0].substring(4));
+    //console.log(r);
+    let g = rgb[1];
+    //console.log(g);
+    let b = parseInt(rgb[2].substring(0, rgb[2].length));
+    //console.log(b);
+    const output = [r, g, b];
+    
+    return output;
+}
 
-    return `rgb(${r}, ${g}, ${b})`
+function toHSL(input) {
+    let r = input[0];
+    let g = input[1];
+    let b = input[2];
+
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    const l = Math.max(r, g, b);
+    const s = l - Math.min(r, g, b);
+    const h = s
+      ? l === r
+        ? (g - b) / s
+        : l === g
+        ? 2 + (b - r) / s
+        : 4 + (r - g) / s
+      : 0;
+    return [
+      60 * h < 0 ? 60 * h + 360 : 60 * h,
+      100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
+      (100 * (2 * l - s)) / 2,
+    ];
+  };
+
+function toRGB(hex) {
+    let r = parseInt(hex.slice(1, 3), 16);
+    let g = parseInt(hex.slice(3, 5), 16);
+    let b = parseInt(hex.slice(5, 7), 16);
+
+    r = r.toString().padStart(3, "0");
+    g = g.toString().padStart(3, "0");
+    b = b.toString().padStart(3, "0");
+
+
+    return `rgb(${r}, ${g}, ${b})`;
 }
 
 function toHex(rgb) {
